@@ -43,7 +43,9 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+size_t print_dlistint(stack_t **h);
 char *_strdup(char *str);
 char **parse(char *buf);
+stack_t *addnode(stack_t **head, const int n);
 
 #endif

@@ -2,9 +2,11 @@
 
 int main(int argc, char **argv, char **env)
 {
-	int ret = 0, fd = 0;
+	int ret = 0, fd = 0, i = 0, ret2 = 0;
 	char **buffer = NULL, *head = NULL;
 	char buf[SIZE];
+	stack_t **stackH = NULL;
+	int data = 0;
 
 	(void)ret;
 	(void)env;
@@ -23,15 +25,14 @@ int main(int argc, char **argv, char **env)
 	}
 	ret = read(fd, buf, SIZE);
 	buffer = parse(buf);
-	if (!buffer)
+	while (buffer[i] != NULL)
 	{
-		printf("F");
-		return (0);
+		data = *buffer[i];
+		addnode(stackH, data);
+		printf("%d\n", data);
+		++i;
 	}
-	printf("%s\n", buffer[0]);
-	printf("%s\n", buffer[1]);
-	printf("%s\n", buffer[2]);
-	printf("%s\n", buffer[3]);
+	print_dlistint(stackH);
 	close(fd);
-	return (ret);
+	return (ret2);
 }
