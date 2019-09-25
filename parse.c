@@ -4,10 +4,12 @@ char **parse(char *buf)
 {
 	char *token = NULL, **lines = malloc(SIZE);
 	int i = 0;
+	char *savedlines[SIZE];
 
 	if (!buf)
 		exit(1);
 	else
+	{
 		while ((token = strtok(buf, "\n")))
 		{
 			if (buf)
@@ -21,6 +23,9 @@ char **parse(char *buf)
 			}
 			i++;
 		}
+	}
 	lines[i] = 0x00;
-	return (lines);
+	lines = savedlines;
+	seg = strtok(savedlines, " ")
+		return (lines);
 }
