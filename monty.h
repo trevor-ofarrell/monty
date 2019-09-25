@@ -1,6 +1,9 @@
 #ifndef MONTY_H
 #define MONTY_H
 #define SIZE 1024
+#define TRUE 1
+#define FALSE 0
+#define FULL 10
 #include <string.h>
 #include <stdio.h>
 #include <stdio.h>
@@ -43,9 +46,23 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+typedef struct _sstack_s
+{
+	int count;
+	stack_t *front;
+	stack_t *rear;
+} _sstack_t;
+
+
+
 size_t print_dlistint(stack_t **h);
 char *_strdup(char *str);
 char **parse(char *buf);
+int removenode(_sstack_t *node);
+void printlist(stack_t *node);
+void stack(_sstack_t *node, int i);
+int empty(_sstack_t *node);
+void init(_sstack_t *node);
 stack_t *addnode(stack_t **head, const int n);
 
 #endif
