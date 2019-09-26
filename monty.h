@@ -3,7 +3,7 @@
 #define SIZE 1024
 #define TRUE 1
 #define FALSE 0
-#define FULL 10
+#define DELIM "\n\t\r "
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>

@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 	ssize_t get;
 	FILE *_file;
 
-	init(&node);
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
