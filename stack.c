@@ -1,61 +1,110 @@
-#include "monty.h"
-
-void init(_sstack_t *node)
+ #include "monty.h"
+/**
+ * init - initialize stack
+ * @node: linkedlist
+ *
+ * Return: 0 for success, 1 otherwise
+ */
+void init(stack_t **node)
 {
-	node->count = 0;
-	node->front = NULL;
-	node->rear = NULL;
+	(*node)->n = 0;
+	(*node)->next = NULL;
+	(*node)->prev = NULL;
 }
-
-int empty(_sstack_t *node)
+/**
+ * nop - does nothing
+ * @node: linkedlist
+ * @lc: line count
+ * Return: void
+ */
+void nop(stack_t **node, unsigned int lc)
 {
-	return (node->rear == NULL);
+	(void)node;
+	(void)lc;
 }
-
-
-void stack(_sstack_t *node, int num)
+/**
+ * push - add new item to TOS
+ * @node: linkedlist
+ * @lc: line count
+ * @nstr: string containing values stack items
+ * Return: void or failure
+ */
+void push(stack_t **node, unsigned int lc, char *nstr)
 {
 	stack_t *temp = NULL;
-
-	if (node->count < FULL)
-	{
-		temp = malloc(sizeof(node));
-		temp->n = num;
-		temp->next = NULL;
-		if (!empty(node))
-		{
-			node->rear->next = temp;
-			node->rear = temp;
-		}
-		else
-		{
-			node->front = node->rear = temp;
-		}
-		node->count++;
-	}
-}
-int removenode(_sstack_t *node)
-{
-	stack_t *temp;
 	int i = 0;
 
-	i = node->front->n;
-	temp = node->front;
-	node->front = node->front->next;
-	node->count--;
-	free(temp);
-	return(i);
-}
-void printlist(stack_t *head)
-{
-	if (!head)
+	if (nstr == NULL)
 	{
-		printf("NULL\n");
-		exit(1);
+		printf("L%d: usage: push integer\n", lc);
+		exit(EXIT_FAILURE);
 	}
-	else
+	while (nstr[i])
 	{
-		printf("%d\n", head->n);
-		printlist(head->next);
+		if (i == 0 && nstr[0] == '-')
+			continue;
+		if (isdigit(nstr[i]) == FALSE)
+		{
+			printf("L%d: usage: push integer\n", lc);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+	temp = malloc(sizeof(node));
+	if (temp == NULL)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	temp->n = atoi(nstr);
+	temp->next = NULL;
+	temp->prev = NULL;
+	if (*node)
+	{
+		temp->next = *node;
+		(*node)->prev = temp;
+	}
+	*node = temp;
+}
+/**
+ * pop - removes top value of stack
+ * @node: linkedlist
+ * @lc: line count
+ * Return: void
+ */
+void pop(stack_t **node, unsigned int lc)
+{
+	stack_t *next;
+
+	if (!node || !*node)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", lc);
+		exit(EXIT_FAILURE);
+	}
+	next = (*node)->next;
+	free(*node);
+	*node = next;
+}
+/**
+ * pall - prints the value of the items on the stack
+ * @node: linkedlist
+ * @lc: line count
+ * Return: void
+ */
+void pall(stack_t **node, unsigned int lc)
+{
+	stack_t *temp = *node;
+
+	(void)lc;
+	if (node == NULL || *node == NULL)
+	{
+		return;
+	}
+	while (temp != NULL)
+	{
+		if (temp->n == 0)
+			break;
+		printf("%d\n", temp->n);
+		temp = temp->next;
 	}
 }

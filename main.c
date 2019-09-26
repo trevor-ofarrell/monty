@@ -1,39 +1,47 @@
 #include "monty.h"
-
-int main(int argc, char **argv, char **env)
+/**
+ * main - starting point for the monty bytecode interpreter program
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: exit success
+ */
+int main(int argc, char **argv)
 {
-	int ret = 0, fd = 0, i = 0, ret2 = 0;
-	char **buffer = NULL, *head = NULL;
-	char buf[SIZE];
-	_sstack_t *node = malloc(sizeof(stack_t));
-	int data = 0;
+	char *buffer = NULL;
+	char *buf = NULL, *nstr = NULL;
+	stack_t *node = malloc(sizeof(stack_t));
+	unsigned int lc = 0;
+	size_t len;
+	ssize_t get;
+	FILE *_file;
 
-	(void)ret;
-	(void)env;
-	(void)head;
-	init(node);
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		dprintf(STDERR_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fd = open(argv[1], O_RDWR);
-	if (fd == -1)
+	_file = fopen(argv[1], "r+");
+	if (_file == NULL)
 	{
-		printf("Error: Can't open file ");
-		printf("<%s>\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't open file ");
 		exit(EXIT_FAILURE);
 	}
-	ret = read(fd, buf, SIZE);
-	buffer = parse(buf);
-	i = 0;
-	while (buffer[i] != NULL)
+	while ((get = getline(&buf, &len, _file) != -1))
 	{
-		data = *buffer[i];
-		stack(node, data);
-		++i;
+		lc++;
+		buffer = strtok(buf, "\n\t\r ");
+		if (!buffer || strncmp(buffer, "#", 1) == 0)
+			continue;
+		if (strcmp(buffer, "push") == 0)
+		{
+			nstr = strtok(NULL, "\n\t\r ");
+			push(&node, lc, nstr);
+		}
+		else
+			getops(buffer, &node, lc);
 	}
-	printlist(node->front);
-	close(fd);
-	return (ret2);
+	fclose(_file);
+	free(node);
+	free(buf);
+	return (EXIT_SUCCESS);
 }

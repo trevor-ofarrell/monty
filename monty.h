@@ -5,6 +5,7 @@
 #define FALSE 0
 #define FULL 10
 #include <string.h>
+#include <ctype.h>
 #include <stdio.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -16,6 +17,7 @@
 #include <stdlib.h>
 
 extern char **environ;
+extern char *gbuffer;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -53,16 +55,18 @@ typedef struct _sstack_s
 	stack_t *rear;
 } _sstack_t;
 
-
-
+int getops(char *buf, stack_t **stack, unsigned int lc);
+char *_strstr(char *haystack, char *needle);
+int _strcmp(char *s1, char *s2);
+char **postparse(char **line);
 size_t print_dlistint(stack_t **h);
 char *_strdup(char *str);
-char **parse(char *buf);
-int removenode(_sstack_t *node);
-void printlist(stack_t *node);
-void stack(_sstack_t *node, int i);
-int empty(_sstack_t *node);
-void init(_sstack_t *node);
+char *parse(char *buf);
+void pop(stack_t **node, unsigned int lc);
+void pall(stack_t **node, unsigned int lc);
+void push(stack_t **node, unsigned int lc, char *nstr);
+void nop(stack_t **node, unsigned int lc);
+void init(stack_t **node);
 stack_t *addnode(stack_t **head, const int n);
 
 #endif
