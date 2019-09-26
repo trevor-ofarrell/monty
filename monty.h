@@ -17,7 +17,6 @@
 #include <stdlib.h>
 
 extern char **environ;
-extern char *gbuffer;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
