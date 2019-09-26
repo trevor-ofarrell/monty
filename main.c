@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	_file = fopen(argv[1], "r+");
 	if (_file == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file ");
+		dprintf(STDERR_FILENO, "Error: Can't open %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	while ((get = getline(&buf, &len, _file) != -1))
