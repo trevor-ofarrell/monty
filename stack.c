@@ -36,7 +36,7 @@ void push(stack_t **node, unsigned int lc, char *nstr)
 
 	if (nstr == NULL)
 	{
-		printf("L%d: usage: push integer\n", lc);
+		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", lc);
 		exit(EXIT_FAILURE);
 	}
 	while (nstr[i])
@@ -45,7 +45,7 @@ void push(stack_t **node, unsigned int lc, char *nstr)
 			continue;
 		if (isdigit(nstr[i]) == FALSE)
 		{
-			printf("L%d: usage: push integer\n", lc);
+			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", lc);
 			exit(EXIT_FAILURE);
 		}
 		i++;
