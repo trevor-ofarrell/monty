@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 			getops(buffer, &node, lc);
 	}
 	fclose(_file);
-	free(node);
+	freestack(&node);
 	free(buf);
 	return (EXIT_SUCCESS);
 }

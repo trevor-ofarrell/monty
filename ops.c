@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * getops - struct to compare input to a list of cmds and then execute said cmd
+ * getops - struct to compare input to a list of cmds and then execute if valid
  * @buf: user input
  * @stack: our linked list
  * @lc: line count of instruction
@@ -15,6 +15,7 @@ int getops(char *buf, stack_t **stack, unsigned int lc)
 		{"pall", pall},
 		{"pop", pop},
 		{"nop", nop},
+		{"pint", pint},
 		{NULL, NULL},
 	};
 
@@ -27,5 +28,6 @@ int getops(char *buf, stack_t **stack, unsigned int lc)
 		}
 	}
 	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", lc, buf);
+	freestack(stack);
 	return (EXIT_FAILURE);
 }
