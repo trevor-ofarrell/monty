@@ -7,12 +7,9 @@
  */
 int main(int argc, char **argv)
 {
-	char *buffer = NULL;
-	char *buf = NULL, *nstr = NULL;
+	char *buf = NULL;
 	stack_t *node = malloc(sizeof(char *));
-	unsigned int lc = 0;
-	size_t len;
-	ssize_t get;
+	size_t len = 0;
 	FILE *_file;
 
 	if (argc != 2)
@@ -26,18 +23,9 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Error: Can't open %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((get = getline(&buf, &len, _file) != -1))
-	{
-		lc++;
-		buffer = strtok(buf, DELIM);
-		if (strcmp(buffer, "push") == 0)
-		{
-			nstr = strtok(NULL, DELIM);
-			push(&node, lc, nstr);
-		}
-		else
-			getops(buffer, &node, lc);
-	}
+	else
+		do_ops(node, buf, len, _file);
+
 	fclose(_file);
 	freestack(&node);
 	free(buf);

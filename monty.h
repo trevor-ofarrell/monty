@@ -54,6 +54,7 @@ typedef struct _sstack_s
 	stack_t *rear;
 } _sstack_t;
 
+void do_ops(stack_t *node, char *buf, size_t len, FILE *_file);
 void freestack(stack_t **node);
 int getops(char *buf, stack_t **stack, unsigned int lc);
 char *_strstr(char *haystack, char *needle);
