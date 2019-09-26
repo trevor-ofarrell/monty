@@ -24,7 +24,7 @@ void nop(stack_t **node, unsigned int lc)
 }
 /**
  * push - add new item to TOS
- * @node: linkedlist
+ * @node: linked list
  * @lc: line count
  * @nstr: string containing values stack items
  * Return: void or failure
@@ -68,7 +68,7 @@ void push(stack_t **node, unsigned int lc, char *nstr)
 }
 /**
  * pop - removes top value of stack
- * @node: linkedlist
+ * @node: linked list
  * @lc: line count
  * Return: void
  */
@@ -87,7 +87,7 @@ void pop(stack_t **node, unsigned int lc)
 }
 /**
  * pall - prints the value of the items on the stack
- * @node: linkedlist
+ * @node: linked list
  * @lc: line count
  * Return: void
  */

@@ -30,8 +30,6 @@ int main(int argc, char **argv)
 	{
 		lc++;
 		buffer = strtok(buf, "\n\t\r ");
-		if (!buffer || strncmp(buffer, "#", 1) == 0)
-			continue;
 		if (strcmp(buffer, "push") == 0)
 		{
 			nstr = strtok(NULL, "\n\t\r ");
