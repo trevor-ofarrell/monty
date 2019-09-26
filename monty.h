@@ -62,6 +62,7 @@ char **postparse(char **line);
 size_t print_dlistint(stack_t **h);
 char *_strdup(char *str);
 char *parse(char *buf);
+void pint(stack_t **node, unsigned int lc);
 void pop(stack_t **node, unsigned int lc);
 void pall(stack_t **node, unsigned int lc);
 void push(stack_t **node, unsigned int lc, char *nstr);
