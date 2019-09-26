@@ -25,9 +25,5 @@ int main(int argc, char **argv)
 	}
 	else
 		do_ops(node, buf, len, _file);
-
-	fclose(_file);
-	freestack(&node);
-	free(buf);
 	return (EXIT_SUCCESS);
 }

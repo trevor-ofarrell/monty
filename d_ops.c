@@ -28,4 +28,7 @@ void do_ops(stack_t *node, char *buf, size_t len, FILE *_file)
 		else
 			getops(buffer, &node, lc);
 	}
+	fclose(_file);
+	freestack(&node);
+	free(buf);
 }
