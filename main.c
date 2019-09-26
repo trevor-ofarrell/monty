@@ -9,12 +9,13 @@ int main(int argc, char **argv)
 {
 	char *buffer = NULL;
 	char *buf = NULL, *nstr = NULL;
-	stack_t *node = malloc(sizeof(stack_t));
+	stack_t *node = malloc(sizeof(char *));
 	unsigned int lc = 0;
 	size_t len;
 	ssize_t get;
 	FILE *_file;
 
+	init(&node);
 	if (argc != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
@@ -29,10 +30,10 @@ int main(int argc, char **argv)
 	while ((get = getline(&buf, &len, _file) != -1))
 	{
 		lc++;
-		buffer = strtok(buf, "\n\t\r ");
+		buffer = strtok(buf, DELIM);
 		if (strcmp(buffer, "push") == 0)
 		{
-			nstr = strtok(NULL, "\n\t\r ");
+			nstr = strtok(NULL, DELIM);
 			push(&node, lc, nstr);
 		}
 		else

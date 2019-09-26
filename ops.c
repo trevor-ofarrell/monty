@@ -23,8 +23,9 @@ int getops(char *buf, stack_t **stack, unsigned int lc)
 		if (strcmp(buf, opcodes[i].opcode) == 0)
 		{
 			(opcodes[i].f)(stack, lc);
-			return (0);
+			return (EXIT_SUCCESS);
 		}
 	}
-	return (0);
+	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", lc, buf);
+	return (EXIT_FAILURE);
 }
