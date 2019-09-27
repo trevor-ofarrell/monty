@@ -36,7 +36,7 @@ void push(stack_t **node, unsigned int lc, char *nstr)
 
 	if (nstr == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", lc);
+		fprintf(stderr, "L%d: usage: push integer\n", lc);
 		exit(EXIT_FAILURE);
 	}
 	for (i = 0; nstr[i]; i++)
@@ -45,14 +45,14 @@ void push(stack_t **node, unsigned int lc, char *nstr)
 			continue;
 		if (isdigit(nstr[i]) == 0)
 		{
-			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", lc);
+			fprintf(stderr, "L%d: usage: push integer\n", lc);
 			exit(EXIT_FAILURE);
 		}
 	}
 	temp = malloc(sizeof(node));
 	if (temp == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	temp->n = atoi(nstr);
@@ -77,7 +77,7 @@ void pop(stack_t **node, unsigned int lc)
 
 	if (!node || !*node)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", lc);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", lc);
 		exit(EXIT_FAILURE);
 	}
 	next = (*node)->next;

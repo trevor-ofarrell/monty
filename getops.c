@@ -27,7 +27,7 @@ int getops(char *buf, stack_t **stack, unsigned int lc)
 			return (EXIT_SUCCESS);
 		}
 	}
-	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", lc, buf);
+	fprintf(stderr, "L%d: unknown instruction %s\n", lc, buf);
 	freestack(stack);
 	return (EXIT_FAILURE);
 }

@@ -11,7 +11,7 @@ void pint(stack_t **node, unsigned int lc)
 
 	if (!node || !*node)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", lc);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", lc);
 		exit(EXIT_FAILURE);
 	}
 	data = (*node)->n;
