@@ -17,3 +17,21 @@ void pint(stack_t **node, unsigned int lc)
 	data = (*node)->n;
 	printf("%d\n", data);
 }
+/**
+ * freestack - free the stack
+ * @node: linked list
+ *
+ *
+ * Return - void
+ */
+void freestack(stack_t **node)
+{
+	stack_t *temp = NULL;
+
+	while (*node)
+	{
+		temp = *node;
+		*node = (*node)->next;
+		free(temp);
+	}
+}
