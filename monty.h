@@ -49,6 +49,7 @@ typedef struct instruction_s
 
 void swap(stack_t **node, unsigned int lc);
 void do_ops(stack_t *node, char *buf, size_t len, FILE *_file);
+void sub(stack_t **node, unsigned int lc);
 void add(stack_t **node, unsigned int lc);
 void freestack(stack_t **node);
 int getops(char *buf, stack_t **stack, unsigned int lc);

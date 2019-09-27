@@ -61,3 +61,29 @@ void add(stack_t **node, unsigned int lc)
 		exit(EXIT_FAILURE);
 	}
 }
+/**
+ * sub - subtract the two elements on the TOS
+ * @node: pointer to linked list
+ * @lc: line count
+ *
+ * Return - void
+ */
+void sub(stack_t **node, unsigned int lc)
+{
+	stack_t *temp = NULL;
+
+	if (*node && (*node)->next != NULL)
+	{
+		(*node)->next->n -= (*node)->n;
+		temp = *node;
+		*node = (*node)->next;
+		(*node)->prev = NULL;
+		free(temp);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't sub, stack too short\n", lc);
+		freestack(node);
+		exit(EXIT_FAILURE);
+	}
+}

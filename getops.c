@@ -15,6 +15,7 @@ int getops(char *buf, stack_t **stack, unsigned int lc)
 		{"pall", pall},
 		{"pop", pop},
 		{"add", add},
+		{"sub", sub},
 		{"nop", nop},
 		{"swap", swap},
 		{"pint", pint},
