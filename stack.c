@@ -101,8 +101,6 @@ void pall(stack_t **node, unsigned int lc)
 	}
 	while (temp != NULL)
 	{
-		if (temp->n == 0)
-			break;
 		printf("%d\n", temp->n);
 		temp = temp->next;
 	}
