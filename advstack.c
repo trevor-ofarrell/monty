@@ -55,3 +55,34 @@ void mul(stack_t **node, unsigned int lc)
 		exit(EXIT_FAILURE);
 	}
 }
+/**
+ * mod - preform a modulo operation the two elements on the TOS
+ * @node: pointer to linked list
+ * @lc: line count
+ *
+ * Return - void
+ */
+void mod(stack_t **node, unsigned int lc)
+{
+	stack_t *temp = NULL;
+
+	if ((*node)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", lc);
+		exit(EXIT_FAILURE);
+	}
+	else if (*node && (*node)->next != NULL)
+	{
+		(*node)->next->n %= (*node)->n;
+		temp = *node;
+		*node = (*node)->next;
+		(*node)->prev = NULL;
+		free(temp);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", lc);
+		freestack(node);
+		exit(EXIT_FAILURE);
+	}
+}
