@@ -1,17 +1,5 @@
  #include "monty.h"
 /**
- * init - initialize stack
- * @node: linkedlist
- *
- * Return: 0 for success, 1 otherwise
- */
-void init(stack_t **node)
-{
-	(*node)->n = 0;
-	(*node)->next = NULL;
-	(*node)->prev = NULL;
-}
-/**
  * nop - does nothing
  * @node: linkedlist
  * @lc: line count
@@ -85,7 +73,30 @@ void pop(stack_t **node, unsigned int lc)
 	*node = next;
 }
 /**
- * pall - prints the value of the items on the stack
+ * swap - swap the two elements on TOS
+ * @node: pointer to linked list
+ * @lc: line count
+ * Return: void
+ */
+void swap(stack_t **node, unsigned int lc)
+{
+	int data;
+
+	if (*node && (*node)->next != NULL)
+	{
+		data = (*node)->n;
+		(*node)->n = (*node)->next->n;
+		(*node)->next->n = data;
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n", lc);
+		freestack(node);
+		exit(EXIT_FAILURE);
+	}
+}
+/**
+ * pall - prints the value of all items on the stack
  * @node: linked list
  * @lc: line count
  * Return: void
