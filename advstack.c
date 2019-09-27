@@ -10,6 +10,11 @@ void opdiv(stack_t **node, unsigned int lc)
 {
 	stack_t *temp = NULL;
 
+	if ((*node)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", lc);
+		exit(EXIT_FAILURE);
+	}
 	if (*node && (*node)->next != NULL)
 	{
 		(*node)->next->n /= (*node)->n;
@@ -17,11 +22,6 @@ void opdiv(stack_t **node, unsigned int lc)
 		*node = (*node)->next;
 		(*node)->prev = NULL;
 		free(temp);
-	}
-	else if ((*node)->n == 0)
-	{
-		fprintf(stderr, "L%u: division by zero\n", lc);
-		exit(EXIT_FAILURE);
 	}
 	else
 	{
