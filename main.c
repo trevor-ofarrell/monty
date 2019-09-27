@@ -8,7 +8,7 @@
 int main(int argc, char **argv)
 {
 	char *buf = NULL;
-	stack_t *node = malloc(sizeof(char *));
+	stack_t *node = NULL;
 	size_t len = 0;
 	FILE *_file;
 
