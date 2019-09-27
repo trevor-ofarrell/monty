@@ -15,6 +15,11 @@ void opdiv(stack_t **node, unsigned int lc)
 		fprintf(stderr, "L%u: division by zero\n", lc);
 		exit(EXIT_FAILURE);
 	}
+	else if (!*node || !(*node)->next)
+	{
+		fprintf(stderr, "L%d: can't div, stack too short\n", lc);
+		exit(EXIT_FAILURE);
+	}
 	if (*node && (*node)->next != NULL)
 	{
 		(*node)->next->n /= (*node)->n;
