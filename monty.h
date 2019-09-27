@@ -29,9 +29,9 @@ extern char **environ;
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 /**
  * struct instruction_s - opcode and its function
@@ -43,16 +43,9 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
-typedef struct _sstack_s
-{
-	int count;
-	stack_t *front;
-	stack_t *rear;
-} _sstack_t;
 
 void do_ops(stack_t *node, char *buf, size_t len, FILE *_file);
 void freestack(stack_t **node);
