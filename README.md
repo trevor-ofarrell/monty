@@ -1,3 +1,4 @@
+## Monty Bytecode Interpreter
 ## 0x19. C - Stacks, Queues - LIFO, FIFO
 
 Foundations - Low-level programming & Algorithm ― Data structures and Algorithms 
@@ -108,7 +109,7 @@ julien@ubuntu:~/0x19-stacks_queues_lifo_fifo$
 
 ```
 
-## More about this monty program
+## More about this program
 
 -Usage: monty file
  where file is the path to the file containing Monty byte code
