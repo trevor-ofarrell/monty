@@ -28,10 +28,4 @@ void opdiv(stack_t **node, unsigned int lc)
 		(*node)->prev = NULL;
 		free(temp);
 	}
-	else
-	{
-		fprintf(stderr, "L%u: can't div, stack too short\n", lc);
-		freestack(node);
-		exit(EXIT_FAILURE);
-	}
 }
