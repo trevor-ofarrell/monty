@@ -14,6 +14,7 @@ int getops(char *buf, stack_t **stack, unsigned int lc)
 	instruction_t opcodes[] = {
 		{"pall", pall},
 		{"pop", pop},
+		{"add", add},
 		{"nop", nop},
 		{"swap", swap},
 		{"pint", pint},
