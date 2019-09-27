@@ -32,23 +32,22 @@ void nop(stack_t **node, unsigned int lc)
 void push(stack_t **node, unsigned int lc, char *nstr)
 {
 	stack_t *temp = NULL;
-	int i = 0;
+	int i;
 
 	if (nstr == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", lc);
 		exit(EXIT_FAILURE);
 	}
-	while (nstr[i])
+	for (i = 0; nstr[i]; i++)
 	{
-		if (i == 0 && nstr[0] == '-')
+		if (nstr[0] == '-' && i == 0)
 			continue;
-		if (isdigit(nstr[i]) == FALSE)
+		if (isdigit(nstr[i]) == 0)
 		{
 			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", lc);
 			exit(EXIT_FAILURE);
 		}
-		i++;
 	}
 	temp = malloc(sizeof(node));
 	if (temp == NULL)
